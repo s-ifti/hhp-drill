@@ -1,0 +1,14 @@
+MemberID,ProviderID,Vendor,PCP,Year,Specialty,PlaceSvc,PayDelay,LengthOfStay,DSFS,PrimaryConditionGroup,CharlsonIndex,ProcedureGroup,SupLOS
+42286978,8013252,172193,37796,Y1,Surgery,Office,28,,8- 9 months,NEUMENT,0,MED,0
+97903248,3316066,726296,5300,Y3,Internal,Office,50,,7- 8 months,NEUMENT,1-2,EM,0
+2759427,2997752,140343,91972,Y3,Internal,Office,14,,0- 1 month,METAB3,0,EM,0
+73570559,7053364,240043,70119,Y3,Laboratory,Independent Lab,24,,5- 6 months,METAB3,1-2,SCS,0
+11837054,7557061,496247,68968,Y2,Surgery,Outpatient Hospital,27,,4- 5 months,FXDISLC,1-2,EM,0
+45844561,1963488,4042,55823,Y3,Pediatrics,Office,25,,3- 4 months,NEUMENT,0,EM,0
+99829076,6721023,265273,91972,Y1,Rehabilitation,Office,162+,,0- 1 month,TRAUMA,0,MED,0
+54666321,9932074,35565,27294,Y1,Diagnostic Imaging,Office,29,,0- 1 month,RESPR4,0,RAD,0
+60497718,363858,293107,64913,Y2,Rehabilitation,Office,42,,1- 2 months,INFEC4,0,EM,0
+72200595,6251259,791272,49465,Y3,Internal,Office,56,,7- 8 months,MISCHRT,1-2,SCS,0
+12333431,605446,120581,20893,Y3,Anesthesiology,Outpatient Hospital,37,,,ARTHSPIN,1-2,ANES,0
+66951188,4699470,179509,75876,Y1,Diagnostic Imaging,Inpatient Hospital,51,,0- 1 month,ROAMI,0,RAD,0
+78859054,9121540,523791,21579,Y1,Emergency,Urgent Care,22,1 day,6- 7 months,HEART2,0,SDS,0
