@@ -11,14 +11,14 @@ http://www.heritagehealthprize.com/c/hhp/data
 NOTE: a small sample Claims.csv dataset as a test is already included in this repository.
 
 
-# Prerequisite
+## Prerequisite
 
 Vagrant,  Vagrantfile tested with virtual box as provider
 
    To launch VM run
   > vagrant up
 
-# Test queries
+## Test queries
 
 To run queries on drill issue following command on shell after vagrant ssh:
 
@@ -26,30 +26,33 @@ cd /opt/apache-drill-0.7.0
 bin/sqlline -u jdbc:drill:zk=local
 
 
-# Example Queries
+## Example Queries
 
-## Group by service speciality
+### Group by service speciality
 
     SELECT a.columns[5], count(*)  
-  FROM dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a 
-  JOIN dfs.`/vagrant/HHP_release3_dataset/Members.csv` m 
-    ON a.columns[0] = m.columns[0] where m.columns[0] <> 'MemberID' 
-  GROUP BY a.columns[5] order by 2 desc;
+       FROM dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a 
+       JOIN dfs.`/vagrant/HHP_release3_dataset/Members.csv` m 
+         ON a.columns[0] = m.columns[0] where m.columns[0] <> 'MemberID' 
+       GROUP 
+          BY a.columns[5] order by 2 desc;
 
-## Group by Geneder, Age Group , project avg. length of stay
+### Group by Geneder, Age Group , project avg. length of stay
 
     SELECT m.columns[2] as Gender, 
         m.columns[1] as AgeGroup, 
         Avg( cast( substring(a.columns[9],1,1) as double)) as AvgLengthOfStay, 
         count(*) as TotalNumberRecords
-  FROM dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a 
-  JOIN dfs.`/vagrant/HHP_release3_dataset/Members.csv` m 
-    ON a.columns[0] = m.columns[0] where substring(a.columns[9],1,1) not in ('D', '') 
- GROUP
-    BY m.columns[2], m.columns[1] order by 1,2;
+       FROM dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a 
+       JOIN dfs.`/vagrant/HHP_release3_dataset/Members.csv` m 
+         ON a.columns[0] = m.columns[0] where substring(a.columns[9],1,1) not in ('D', '') 
+       GROUP
+          BY m.columns[2], m.columns[1] order by 1,2;
 
-## OUTPUT
+### OUTPUT
 Output when using original Claims.csv present within HHP release 3:
+
+
     +------------+------------+-----------------+-------------+
     |   Gender   |  AgeGroup  | AvgLengthOfStay | TotalNumberRecords|
     +------------+------------+-----------------+-------------+
@@ -89,10 +92,11 @@ Output when using original Claims.csv present within HHP release 3:
 
 
 
-Misc. 
-Group by gender
-       SELECT m.columns[2], count(*) from dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a join dfs.`/vagrant/HHP_release3_dataset/Members.csv` m on a.columns[0] = m.columns[0] group by m.columns[2];
+### Misc. queries
+
+    Group by gender
+        SELECT m.columns[2], count(*) from dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a join dfs.`/vagrant/HHP_release3_dataset/Members.csv` m on a.columns[0] = m.columns[0] group by m.columns[2];
 
 
-select m.columns[2], variance( cast( substring(a.columns[9],1,1) as int)), count(*) from dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a join dfs.`/vagrant/HHP_release3_dataset/Members.csv` m on a.columns[0] = m.columns[0] where substring(a.columns[9],1,1) not in ('D', '') group by  m.columns[2];
+    SELECT m.columns[2], variance( cast( substring(a.columns[9],1,1) as int)), count(*) from dfs.`/vagrant/HHP_release3_dataset/Claims.csv` a join dfs.`/vagrant/HHP_release3_dataset/Members.csv` m on a.columns[0] = m.columns[0] where substring(a.columns[9],1,1) not in ('D', '') group by  m.columns[2];
 
